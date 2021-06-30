@@ -1,26 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
+import ListItem from "./ListItem";
 
 function List(props) {
-    const {items} = props;
+    const { items } = props;
 
     if (!items.length) {
         return <span className="empty-message">No items in list</span>;
     }
 
     return (
-        <ul className="list-items">
-            {items.map(item => <li className="item" key={item}>{item}</li>)}
-        </ul>
-    )
+        <div className="list">
+            <ul className="list-items">
+                {items.map(item => <ListItem key={item} item={item} />)}
+            </ul>
+        </div>
+    );
 }
 
 List.propTypes = {
-    items: PropTypes.array,
-}
+    items: PropTypes.arrayOf(PropTypes.string)
+};
 
 List.defaultProps = {
-    items: [],
-}
+    items: []
+};
 
 export default List;
